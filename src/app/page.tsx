@@ -17,7 +17,7 @@ export default function Home() {
     handleSubmit,
     formState: { errors },
   } = useForm<ApacheSchemaType>({
-    resolver: zodResolver(apacheSchema),
+    resolver: zodResolver(apacheSchema) as any,
     defaultValues: {
       isEmergencySurgery: false,
       isAcuteRenalFailure: false,

@@ -1,45 +1,43 @@
 import { z } from "zod";
 
-// Хелпер для создания числового поля с русскими ошибками
+// Упрощенный хелпер (убрали объект с invalid_type_error, который ломал Vercel)
 const createNumberField = (min: number, max: number, minMsg: string, maxMsg: string) =>
   z.coerce
-    .number({
-      invalid_type_error: "Введите число",
-      required_error: "Обязательное поле",
-    })
+    .number() // <-- Убрали аргументы отсюда
     .min(min, minMsg)
     .max(max, maxMsg);
 
 export const apacheSchema = z.object({
   // 1. Физиология
-  temperature: createNumberField(20, 46, "Температура не может быть ниже 20", "Температура не может быть выше 46"),
+  temperature: createNumberField(20, 46, "Т < 20", "Т > 46"),
   
-  meanArterialPressure: createNumberField(20, 300, "АД слишком низкое", "АД слишком высокое (>300)"),
+  meanArterialPressure: createNumberField(20, 300, "АД < 20", "АД > 300"),
   
-  heartRate: createNumberField(10, 300, "Пульс слишком низкий", "Пульс слишком высокий"),
+  heartRate: createNumberField(10, 300, "Пульс < 10", "Пульс > 300"),
   
-  respiratoryRate: createNumberField(0, 100, "Неверное значение ЧДД", "ЧДД слишком высокое"),
+  respiratoryRate: createNumberField(0, 100, "ЧДД < 0", "ЧДД > 100"),
   
-  oxygenation: createNumberField(0, 800, "Неверное значение PaO2", "Слишком высокое PaO2"),
+  oxygenation: createNumberField(0, 800, "PaO2 < 0", "PaO2 > 800"),
   
-  arterialPH: createNumberField(6.5, 8.0, "pH несовместим с жизнью (<6.5)", "pH слишком высокий (>8.0)"),
+  arterialPH: createNumberField(6.5, 8.0, "pH < 6.5", "pH > 8.0"),
   
-  sodium: createNumberField(100, 200, "Натрий < 100", "Натрий > 200"),
+  sodium: createNumberField(100, 200, "Na < 100", "Na > 200"),
   
-  potassium: createNumberField(1, 15, "Калий < 1", "Калий > 15"),
+  potassium: createNumberField(1, 15, "K < 1", "K > 15"),
   
-  creatinine: createNumberField(0, 30, "Креатинин не может быть < 0", "Слишком высокий креатинин"),
+  creatinine: createNumberField(0, 30, "Cr < 0", "Cr > 30"),
   
-  hematocrit: createNumberField(5, 80, "Гематокрит < 5%", "Гематокрит > 80%"),
+  hematocrit: createNumberField(5, 80, "Ht < 5%", "Ht > 80%"),
   
-  wbc: createNumberField(0, 200, "Лейкоциты < 0", "Лейкоциты > 200"),
+  wbc: createNumberField(0, 200, "WBC < 0", "WBC > 200"),
   
-  gcs: createNumberField(3, 15, "Минимум 3 балла", "Максимум 15 баллов"),
+  gcs: createNumberField(3, 15, "Мин. 3", "Макс. 15"),
 
   // 2. Пациент
-  age: createNumberField(18, 130, "Только для взрослых (18+)", "Некорректный возраст"),
+  age: createNumberField(18, 130, "18+", "Некорректный возраст"),
   
   isEmergencySurgery: z.boolean().default(false),
+  
   isAcuteRenalFailure: z.boolean().default(false),
   
   // 3. Хронические болезни

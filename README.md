@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# APACHE II Calculator 🏥
 
-## Getting Started
+Профессиональный медицинский калькулятор для оценки тяжести состояния пациентов и прогноза летальности в отделении интенсивной терапии (ОРИТ).
 
-First, run the development server:
+[🔗 **Открыть Демо (Live Demo)**](https://apache-sofa-calculator.vercel.app/)  
+*(Замените ссылку на вашу актуальную с Vercel)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Project Preview](https://via.placeholder.com/800x400.png?text=Screenshot+Placeholder)
+*(Здесь можно позже вставить скриншот готового калькулятора)*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Стек технологий
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/) (Strict typing)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) + clsx
+*   **Forms:** [React Hook Form](https://react-hook-form.com/)
+*   **Validation:** [Zod](https://zod.dev/)
+*   **Deployment:** Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Ключевые особенности
 
-## Learn More
+*   **Строгая типизация:** Полностью типизированные интерфейсы данных (`ApacheInputData`, `ApacheResult`).
+*   **Сложная бизнес-логика:** 
+    *   Реализован алгоритм APACHE II с учетом 12 физиологических параметров.
+    *   Учет хронических заболеваний и возраста.
+    *   Специальная логика для **Острой почечной недостаточности** (удвоение баллов креатинина).
+*   **UX/UI:** 
+    *   Мгновенная валидация полей с понятными сообщениями на русском языке.
+    *   Адаптивная верстка (Mobile First).
+    *   Справочный раздел ("Аккордеон") с методикой расчета и таблицами интерпретации.
+*   **Производительность:** Использование Server Components и Client Components для оптимизации.
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Запуск локально
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/ВАШ_НИК/apache-sofa-calculator.git
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  Установите зависимости:
+    ```bash
+    npm install
+    ```
 
-## Deploy on Vercel
+3.  Запустите сервер разработки:
+    ```bash
+    npm run dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚠️ Дисклеймер
+
+Этот проект создан в демонстрационных и образовательных целях для портфолио разработчика. Он не является сертифицированным медицинским изделием и не должен использоваться для принятия реальных клинических решений без проверки врачом.
